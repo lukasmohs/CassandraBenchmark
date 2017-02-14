@@ -17,11 +17,16 @@ import java.util.Date;
 public class CassandraConnector
 {
 
-    private static int NUMBEROFCOLUMS = 100;
+    private static int NUMBEROFCOLUMNS = 0;
     /** Cassandra Cluster. */
     private Cluster cluster;
     /** Cassandra Session. */
     private Session session;
+
+    public CassandraConnector(int numberOfColumns) {
+        NUMBEROFCOLUMNS = numberOfColumns;
+    }
+
 
     public void connect(final String node, final int port)
     {
@@ -56,7 +61,7 @@ public class CassandraConnector
     public  void createLargeLogsTable(CassandraConnector client, String keySpace) {
         String sql = "CREATE TABLE " + keySpace + ".largelogs (id int, date timestamp, title text, description text, level int, ";
 
-        for(int i = 0; i<NUMBEROFCOLUMS; i++) {
+        for(int i = 0; i<NUMBEROFCOLUMNS; i++) {
             sql += "server" + i + " text,";
         }
         sql += " PRIMARY KEY (id))";
@@ -65,7 +70,12 @@ public class CassandraConnector
 
     public  void createKeySpace(CassandraConnector client, String keySpaceName) {
         client.getSession().execute( "CREATE KEYSPACE " + keySpaceName
-                + " WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }");
+                + " WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 }");
+
+    }
+
+    public  void dropKeySpace(CassandraConnector client, String keySpaceName) {
+        client.getSession().execute( "DROP KEYSPACE IF EXISTS " + keySpaceName);
 
     }
 
@@ -90,7 +100,7 @@ public class CassandraConnector
                 .value("level", level);
 
 
-        for(int i = 0; i<NUMBEROFCOLUMS; i++){
+        for(int i = 0; i<NUMBEROFCOLUMNS; i++){
             insert.value("server" + i, new BigInteger(130, new SecureRandom()).toString(32));
         }
 

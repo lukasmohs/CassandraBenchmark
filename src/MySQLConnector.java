@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -7,7 +9,11 @@ import java.sql.Statement;
  */
 public class MySQLConnector {
 
-    private static int NUMBEROFCOLUMS = 100;
+    private int NUMBEROFCOLUMNS = 0;
+
+    public MySQLConnector(int numberOfColumns) {
+        NUMBEROFCOLUMNS = numberOfColumns;
+    }
 
 
     public void createLogsTable(Statement stmt) throws SQLException {
@@ -23,14 +29,14 @@ public class MySQLConnector {
     }
 
     public void createLargeLogsTable(Statement stmt) throws SQLException {
-        String sql = "CREATE TABLE logs " +
+        String sql = "CREATE TABLE largelogs " +
                 "(id INT NOT NULL AUTO_INCREMENT, " +
                 " date DATE not NULL, " +
                 " title VARCHAR(255), " +
                 " description VARCHAR(255), " +
                 " level INTEGER, ";
-        for(int i = 0; i< NUMBEROFCOLUMS; i++) {
-            sql += " server" + i + " VARCHAR(255), ";
+        for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
+            sql += " server" + i + " VARCHAR(31), ";
         }
         sql += " PRIMARY KEY ( id ))";
 
@@ -49,6 +55,22 @@ public class MySQLConnector {
         stmt.executeUpdate(sql);
     }
 
+    public void insertLargeLog(Statement stmt, String title, String description, int level ) throws SQLException {
+
+        String sql = "INSERT INTO largelogs VALUES"
+                + " (NULL, CURDATE(), '"
+                + title + "', '"
+                + description + "', "
+                + level;
+
+        for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
+            sql += " ,'" + new BigInteger(130, new SecureRandom()).toString(32) + "'";
+        }
+        sql += ")";
+
+        stmt.executeUpdate(sql);
+    }
+
     public void dropLogsTable(Statement stmt) throws SQLException {
         String sql = "DROP TABLE IF EXISTS logs";
 
@@ -61,16 +83,17 @@ public class MySQLConnector {
         stmt.executeUpdate(sql);
     }
 
-    public void queryLogById(Statement stmt, int id) throws SQLException {
+    public void queryLargeLogsById(Statement stmt, int id, int serverId) throws SQLException {
         LogEntry entry = null;
-        ResultSet rs = stmt.executeQuery("select * from logs where id=" + id);
+        ResultSet rs = stmt.executeQuery("select * from largelogs where id=" + id);
         while(rs.next()){
             entry = new LogEntry(
                     rs.getLong(rs.findColumn("id")),
                     rs.getDate(rs.findColumn("date")),
                     rs.getString(rs.findColumn("title")),
                     rs.getString(rs.findColumn("description")),
-                    rs.getInt(rs.findColumn("level")));
+                    rs.getInt(rs.findColumn("level")),
+                    rs.getString(rs.findColumn("server" + serverId)));
         }
         rs.close();
     }
