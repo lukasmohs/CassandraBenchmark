@@ -20,8 +20,8 @@ public class MySQLConnector {
         String sql = "CREATE TABLE logs " +
                 "(id INT NOT NULL AUTO_INCREMENT, " +
                 " date DATE not NULL, " +
-                " title VARCHAR(255), " +
-                " description VARCHAR(255), " +
+                " title VARCHAR(31), " +
+                " description VARCHAR(31), " +
                 " level INTEGER, " +
                 " PRIMARY KEY ( id ))";
 
@@ -32,11 +32,11 @@ public class MySQLConnector {
         String sql = "CREATE TABLE largelogs " +
                 "(id INT NOT NULL AUTO_INCREMENT, " +
                 " date DATE not NULL, " +
-                " title VARCHAR(255), " +
-                " description VARCHAR(255), " +
+                " title VARCHAR(31), " +
+                " description VARCHAR(31), " +
                 " level INTEGER, ";
         for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
-            sql += " server" + i + " VARCHAR(31), ";
+            sql += " server" + i + " VARCHAR(15), ";
         }
         sql += " PRIMARY KEY ( id ))";
 

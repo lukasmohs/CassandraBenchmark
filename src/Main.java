@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int NUMBEROFINSERTS = 1000;
+    private static final int NUMBEROFINSERTS = 100;
     private static final int SIZEOFDESCRIPTION = 130;
     private static int NUMBEROFCOLUMNS = 200;
 
