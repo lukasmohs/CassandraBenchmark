@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int NUMBEROFINSERTS = 1000;
+    private static final int NUMBEROFINSERTS = 100;
     private static final int SIZEOFDESCRIPTION = 130;
     private static int NUMBEROFCOLUMS = 100;
 
@@ -51,16 +51,16 @@ public class Main {
         int randomServerId =0;
         Random rand = new Random();
         long startLargeFetch = System.nanoTime();
-        for(int i = NUMBEROFINSERTS; i > 0; i--) {
-             randomServerId = rand.nextInt((NUMBEROFCOLUMS - 0) + 1) + 0;
+        for(int i = NUMBEROFINSERTS-1; i > 0; i--) {
+             randomServerId = rand.nextInt(NUMBEROFCOLUMS );
             client.querylargelogsByIdandServer(client,"logs_keyspace", i, randomServerId);
         }
         long endLargeFetch = System.nanoTime();
 
         //System.out.println("Cassandra large insert duration: " + ((double) (endInsert-startInsert) / 1000000000.0 ));
         //System.out.println("Cassandra large fetch duration: " + ((double) (endFetch - startFetch) / 1000000000.0));
-        System.out.println("Cassandra insert duration: " + ((double) (endLargeInsert-startLargeInsert) / 1000000000.0 ));
-        System.out.println("Cassandra fetch duration: " + ((double) (endLargeFetch - startLargeFetch) / 1000000000.0));
+        System.out.println("Cassandra large insert duration: " + ((double) (endLargeInsert-startLargeInsert) / 1000000000.0 ));
+        System.out.println("Cassandra large fetch duration: " + ((double) (endLargeFetch - startLargeFetch) / 1000000000.0));
         client.close();
 
         try {
@@ -72,6 +72,8 @@ public class Main {
 
             sqlClient.dropLogsTable(stmt);
             sqlClient.createLogsTable(stmt);
+
+
             long startSQLInsert = System.nanoTime();
             for(int i = 0; i <NUMBEROFINSERTS; i++) {
                 sqlClient.insertLog(stmt, "BLABLA",  new BigInteger(SIZEOFDESCRIPTION, new SecureRandom()).toString(32), i);
@@ -84,6 +86,10 @@ public class Main {
                 sqlClient.insertLog(stmt, "BLABLA",  new BigInteger(SIZEOFDESCRIPTION, new SecureRandom()).toString(32), i);
             }
             long endSQLQuery = System.nanoTime();
+
+            sqlClient.dropLargeLogsTable(stmt);
+            sqlClient.createLargeLogsTable(stmt);
+
             System.out.println("MYSQL insert duration: " + ((double) (endSQLInsert-startSQLInsert) / 1000000000.0 ));
             System.out.println("MYSQL query duration: " + ((double) (endSQLQuery-startSQLQuery) / 1000000000.0 ));
 

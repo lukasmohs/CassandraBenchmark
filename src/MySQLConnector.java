@@ -7,6 +7,8 @@ import java.sql.Statement;
  */
 public class MySQLConnector {
 
+    private static int NUMBEROFCOLUMS = 100;
+
 
     public void createLogsTable(Statement stmt) throws SQLException {
         String sql = "CREATE TABLE logs " +
@@ -16,6 +18,21 @@ public class MySQLConnector {
                 " description VARCHAR(255), " +
                 " level INTEGER, " +
                 " PRIMARY KEY ( id ))";
+
+        stmt.executeUpdate(sql);
+    }
+
+    public void createLargeLogsTable(Statement stmt) throws SQLException {
+        String sql = "CREATE TABLE logs " +
+                "(id INT NOT NULL AUTO_INCREMENT, " +
+                " date DATE not NULL, " +
+                " title VARCHAR(255), " +
+                " description VARCHAR(255), " +
+                " level INTEGER, ";
+        for(int i = 0; i< NUMBEROFCOLUMS; i++) {
+            sql += " server" + i + " VARCHAR(255), ";
+        }
+        sql += " PRIMARY KEY ( id ))";
 
         stmt.executeUpdate(sql);
     }
@@ -38,7 +55,11 @@ public class MySQLConnector {
         stmt.executeUpdate(sql);
     }
 
+    public void dropLargeLogsTable(Statement stmt) throws SQLException {
+        String sql = "DROP TABLE IF EXISTS largelogs";
 
+        stmt.executeUpdate(sql);
+    }
 
     public void queryLogById(Statement stmt, int id) throws SQLException {
         LogEntry entry = null;

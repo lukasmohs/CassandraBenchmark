@@ -124,7 +124,7 @@ public class CassandraConnector
                 .from(keySpace,"largelogs")
                 .where(QueryBuilder.eq("id", id));
 
-        ResultSet logEntryResults = client.getSession().execute(select.toString().substring(0, select.toString().length()-1) + " ALLOW FILTERING");
+        ResultSet logEntryResults = client.getSession().execute(select);
         final Row logEntryRow = logEntryResults.one();
         LogEntry logEntry = null;
         if(logEntryRow!=null) {
@@ -135,6 +135,8 @@ public class CassandraConnector
                     logEntryRow.getString("description"),
                     logEntryRow.getInt("level"),
                     logEntryRow.getString("server" + serverId));
+        } else {
+            System.out.println("no matching row found");
         }
 
         return logEntry;
