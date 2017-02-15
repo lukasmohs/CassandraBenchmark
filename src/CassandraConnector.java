@@ -28,8 +28,7 @@ public class CassandraConnector
     }
 
 
-    public void connect(final String node, final int port)
-    {
+    public void connect(final String node, final int port) {
         this.cluster = Cluster.builder().addContactPoint(node).withPort(port)
                 .withProtocolVersion(ProtocolVersion.V4).build();
         session = cluster.connect();

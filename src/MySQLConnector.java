@@ -36,7 +36,7 @@ public class MySQLConnector {
                 " description VARCHAR(31), " +
                 " level INTEGER, ";
         for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
-            sql += " server" + i + " VARCHAR(15), ";
+            sql += " server" + i + " VARCHAR(31), ";
         }
         sql += " PRIMARY KEY ( id ))";
 

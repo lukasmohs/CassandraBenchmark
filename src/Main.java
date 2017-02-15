@@ -1,5 +1,3 @@
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,7 +8,7 @@ public class Main {
 
     private static final int NUMBEROFINSERTS = 100;
     private static final int SIZEOFDESCRIPTION = 130;
-    private static int NUMBEROFCOLUMNS = 200;
+    private static int NUMBEROFCOLUMNS = 180;
 
     public static void main(String[] args) {
 
@@ -23,15 +21,15 @@ public class Main {
 
         client.dropKeySpace(client, "logs_keyspace");
         client.createKeySpace(client, "logs_keyspace");
+
+        //SMALL**********************
+
         client.dropLogsTable(client,"logs_keyspace");
         client.createLogsTable(client, "logs_keyspace");
-        client.dropLargeLogsTable(client,"logs_keyspace");
-        client.createLargeLogsTable(client,"logs_keyspace");
-
 
         long startInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            client.insertLogEntry(client,"logs_keyspace", i , "BLABLA",  new BigInteger(SIZEOFDESCRIPTION, new SecureRandom()).toString(32),  i);
+            client.insertLogEntry(client,"logs_keyspace", i , "someTitle",  "someDescription",  i);
         }
         long endInsert = System.nanoTime();
 
@@ -41,9 +39,14 @@ public class Main {
         }
         long endFetch = System.nanoTime();
 
+        //LARGE**********************
+
+        client.dropLargeLogsTable(client,"logs_keyspace");
+        client.createLargeLogsTable(client,"logs_keyspace");
+
         long startLargeInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            client.insertLargeLogEntry(client,"logs_keyspace", i , "BLABLA",  new BigInteger(SIZEOFDESCRIPTION, new SecureRandom()).toString(32),  i);
+            client.insertLargeLogEntry(client,"logs_keyspace", i , "someTitle",  "someDescription",  i);
         }
         long endLargeInsert = System.nanoTime();
 
@@ -66,29 +69,33 @@ public class Main {
                     "jdbc:mysql://localhost:3306/benchmark","liferay","liferay");
             Statement stmt=con.createStatement();
 
+            //SMALL**********************
+
             sqlClient.dropLogsTable(stmt);
             sqlClient.createLogsTable(stmt);
 
 
             long startSQLInsert = System.nanoTime();
             for(int i = 0; i <NUMBEROFINSERTS; i++) {
-                sqlClient.insertLog(stmt, "BLABLA",  new BigInteger(SIZEOFDESCRIPTION, new SecureRandom()).toString(32), i);
+                sqlClient.insertLog(stmt, "someTitle",  "someDescription", i);
             }
             long endSQLInsert = System.nanoTime();
 
 
             long startSQLQuery = System.nanoTime();
             for(int i = NUMBEROFINSERTS; i >0; i--) {
-                sqlClient.insertLog(stmt, "BLABLA",  new BigInteger(SIZEOFDESCRIPTION, new SecureRandom()).toString(32), i);
+                sqlClient.insertLog(stmt, "someTitle",  "someDescription", i);
             }
             long endSQLQuery = System.nanoTime();
+
+            //LARGE**********************
 
             sqlClient.dropLargeLogsTable(stmt);
             sqlClient.createLargeLogsTable(stmt);
 
             long startLargeSQLInsert = System.nanoTime();
             for(int i = 0; i <NUMBEROFINSERTS; i++) {
-                sqlClient.insertLargeLog(stmt, "BLABLA",  new BigInteger(SIZEOFDESCRIPTION, new SecureRandom()).toString(32), i);
+                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i);
             }
             long endSQLargeLInsert = System.nanoTime();
 
@@ -99,6 +106,8 @@ public class Main {
                 sqlClient.queryLargeLogsById(stmt,i,randomServerId);
             }
             long endLargeSQLQuery = System.nanoTime();
+
+            //OUTPUT**********************
 
             System.out.println("Cassandra insert duration: " + ((double) (endInsert-startInsert) / 1000000000.0 ));
             System.out.println("MYSQL insert duration: " + ((double) (endSQLInsert-startSQLInsert) / 1000000000.0 ));
