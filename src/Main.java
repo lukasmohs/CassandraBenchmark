@@ -11,41 +11,41 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final CassandraConnector client = new CassandraConnector(NUMBEROFCOLUMNS);
+        final CassandraConnector cassandraClient = new CassandraConnector(NUMBEROFCOLUMNS);
         final MySQLConnector sqlClient = new MySQLConnector(NUMBEROFCOLUMNS);
 
         final String ipAddress = "localhost";
         final int port = 9042;
-        client.connect(ipAddress, port);
+        cassandraClient.connect(ipAddress, port);
 
-        client.dropKeySpace(client, "logs_keyspace");
-        client.createKeySpace(client, "logs_keyspace");
+        cassandraClient.dropKeySpace(cassandraClient, "logs_keyspace");
+        cassandraClient.createKeySpace(cassandraClient, "logs_keyspace");
 
         //SMALL**********************
 
-        client.dropLogsTable(client,"logs_keyspace");
-        client.createLogsTable(client, "logs_keyspace");
+        cassandraClient.dropLogsTable(cassandraClient,"logs_keyspace");
+        cassandraClient.createLogsTable(cassandraClient, "logs_keyspace");
 /*
         long startInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            client.insertLogEntry(client,"logs_keyspace", i , "someTitle",  "someDescription",  i);
+            cassandraClient.insertLogEntry(client,"logs_keyspace", i , "someTitle",  "someDescription",  i);
         }
         long endInsert = System.nanoTime();
 
         long startFetch = System.nanoTime();
         for(int i = NUMBEROFINSERTS; i > 0; i--) {
-            client.querylogsById(client,"logs_keyspace", "logs", i);
+            cassandraClient.querylogsById(client,"logs_keyspace", "logs", i);
         }
         long endFetch = System.nanoTime();
 */
         //LARGE**********************
 
-        client.dropLargeLogsTable(client,"logs_keyspace");
-        client.createLargeLogsTable(client,"logs_keyspace");
+        cassandraClient.dropLargeLogsTable(cassandraClient,"logs_keyspace");
+        cassandraClient.createLargeLogsTable(cassandraClient,"logs_keyspace");
 
         long startLargeInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            client.insertLargeLogEntry(client,"logs_keyspace", i , "someTitle",  "someDescription",  i);
+            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i);
         }
         long endLargeInsert = System.nanoTime();
 
@@ -54,12 +54,11 @@ public class Main {
         long startLargeFetch = System.nanoTime();
         for(int i = NUMBEROFINSERTS-1; i > 0; i--) {
              randomServerId = rand.nextInt(NUMBEROFCOLUMNS );
-            client.querylargelogsByIdandServer(client,"logs_keyspace", i, randomServerId);
+            cassandraClient.querylargelogsByIdandServer(cassandraClient,"logs_keyspace", i, randomServerId);
         }
         long endLargeFetch = System.nanoTime();
 
-
-        client.close();
+        cassandraClient.close();
 
         try {
 

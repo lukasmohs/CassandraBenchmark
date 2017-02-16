@@ -11,16 +11,11 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Date;
 
-/**
- * Class used for connecting to Cassandra database.
- */
 public class CassandraConnector
 {
 
     private static int NUMBEROFCOLUMNS = 0;
-    /** Cassandra Cluster. */
     private Cluster cluster;
-    /** Cassandra Session. */
     private Session session;
 
     public CassandraConnector(int numberOfColumns) {
