@@ -16,6 +16,10 @@ public class Main {
 
         final String ipAddress = "localhost";
         final int port = 9042;
+
+        final String sqlAddress = "localhost";
+        final int sqlPort = 3306;
+
         cassandraClient.connect(ipAddress, port);
 
         cassandraClient.dropKeySpace(cassandraClient, "logs_keyspace");
@@ -64,7 +68,7 @@ public class Main {
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/benchmark","liferay","liferay");
+                    "jdbc:mysql://" + sqlAddress + ":" + sqlPort+ "/benchmark","liferay","liferay");
             Statement stmt=con.createStatement();
 
             //SMALL**********************
