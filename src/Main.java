@@ -6,8 +6,7 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int NUMBEROFINSERTS = 100;
-    private static final int SIZEOFDESCRIPTION = 130;
+    private static final int NUMBEROFINSERTS = 1000;
     private static int NUMBEROFCOLUMNS = 180;
 
     public static void main(String[] args) {
@@ -26,7 +25,7 @@ public class Main {
 
         client.dropLogsTable(client,"logs_keyspace");
         client.createLogsTable(client, "logs_keyspace");
-
+/*
         long startInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
             client.insertLogEntry(client,"logs_keyspace", i , "someTitle",  "someDescription",  i);
@@ -38,7 +37,7 @@ public class Main {
             client.querylogsById(client,"logs_keyspace", "logs", i);
         }
         long endFetch = System.nanoTime();
-
+*/
         //LARGE**********************
 
         client.dropLargeLogsTable(client,"logs_keyspace");
@@ -70,7 +69,7 @@ public class Main {
             Statement stmt=con.createStatement();
 
             //SMALL**********************
-
+/*
             sqlClient.dropLogsTable(stmt);
             sqlClient.createLogsTable(stmt);
 
@@ -87,7 +86,7 @@ public class Main {
                 sqlClient.insertLog(stmt, "someTitle",  "someDescription", i);
             }
             long endSQLQuery = System.nanoTime();
-
+*/
             //LARGE**********************
 
             sqlClient.dropLargeLogsTable(stmt);
@@ -109,12 +108,13 @@ public class Main {
 
             //OUTPUT**********************
 
+            /*
             System.out.println("Cassandra insert duration: " + ((double) (endInsert-startInsert) / 1000000000.0 ));
             System.out.println("MYSQL insert duration: " + ((double) (endSQLInsert-startSQLInsert) / 1000000000.0 ));
             System.out.println("--");
             System.out.println("Cassandra fetch duration: " + ((double) (endFetch - startFetch) / 1000000000.0));
             System.out.println("MYSQL fetch duration: " + ((double) (endSQLQuery-startSQLQuery) / 1000000000.0 ));
-            System.out.println("--");
+            System.out.println("--");*/
             System.out.println("Cassandra large insert duration: " + ((double) (endLargeInsert-startLargeInsert) / 1000000000.0 ));
             System.out.println("MYSQL large insert duration: " + ((double) (endSQLargeLInsert-startLargeSQLInsert) / 1000000000.0 ));
             System.out.println("--");
