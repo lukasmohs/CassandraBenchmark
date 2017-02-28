@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int NUMBEROFINSERTS = 10000;
-    private static int NUMBEROFCOLUMNS = 180;
+    private static final int NUMBEROFINSERTS = 5000;
+    private static int NUMBEROFCOLUMNS = 1000;
 
     public static void main(String[] args) {
 
@@ -32,7 +32,7 @@ public class Main {
 
         long startLargeInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 10);
+            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 100);
         }
         long endLargeInsert = System.nanoTime();
 
@@ -61,7 +61,7 @@ public class Main {
 
             long startLargeSQLInsert = System.nanoTime();
             for(int i = 0; i <NUMBEROFINSERTS; i++) {
-                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, 10);
+                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, 100);
             }
             long endSQLargeLInsert = System.nanoTime();
 

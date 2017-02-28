@@ -1,8 +1,7 @@
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 /**
  * Created by lukasmohs on 13/02/17.
@@ -24,7 +23,7 @@ public class MySQLConnector {
                 " description VARCHAR(31), " +
                 " level INTEGER, ";
         for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
-            sql += " server" + i + " VARCHAR(31), ";
+            sql += " server" + i + " VARCHAR(1), ";
         }
         sql += " PRIMARY KEY ( id ))";
 
@@ -48,9 +47,12 @@ public class MySQLConnector {
                 + description + "', "
                 + level;
 
+        Random r = new Random();
+
         for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
             if(i%factor == 0) {
-                sql += " ,'" + new BigInteger(130, new SecureRandom()).toString(32) + "'";
+                sql += ", '" +  (char)(r.nextInt(26) + 'a') + "'";
+                //sql += " ,'" + new BigInteger(130, new SecureRandom()).toString(32) + "'";
             }
         }
         sql += ")";
