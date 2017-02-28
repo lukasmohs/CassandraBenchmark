@@ -11,50 +11,49 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final CassandraConnector cassandraClient = new CassandraConnector(NUMBEROFCOLUMNS);
-        final MySQLConnector sqlClient = new MySQLConnector(NUMBEROFCOLUMNS);
-
-        final String ipAddress = "localhost";
-        final int port = 9042;
-
-        final String sqlAddress = "localhost";
-        final int sqlPort = 3306;
-
-        cassandraClient.connect(ipAddress, port);
-
-        cassandraClient.dropKeySpace(cassandraClient, "logs_keyspace");
-        cassandraClient.createKeySpace(cassandraClient, "logs_keyspace");
-
-        //LARGE**********************
-
-        cassandraClient.dropLargeLogsTable(cassandraClient,"logs_keyspace");
-        cassandraClient.createLargeLogsTable(cassandraClient,"logs_keyspace");
-
-        long startLargeInsert = System.nanoTime();
-        for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 50);
-        }
-        long endLargeInsert = System.nanoTime();
-
-        int randomSensorId =0;
-        Random rand = new Random();
-        long startLargeFetch = System.nanoTime();
-        for(int i = NUMBEROFINSERTS-1; i > 0; i--) {
-             randomSensorId = rand.nextInt(NUMBEROFCOLUMNS );
-            cassandraClient.querylargelogsByIdandSensor(cassandraClient,"logs_keyspace", i, randomSensorId);
-        }
-        long endLargeFetch = System.nanoTime();
-
-        cassandraClient.close();
-
         try {
+            final CassandraConnector cassandraClient = new CassandraConnector(NUMBEROFCOLUMNS);
+            final MySQLConnector sqlClient = new MySQLConnector(NUMBEROFCOLUMNS);
+
+            final String ipAddress = "localhost";
+            final int port = 9042;
+
+            final String sqlAddress = "localhost";
+            final int sqlPort = 3306;
+
+            cassandraClient.connect(ipAddress, port);
+
+            cassandraClient.dropKeySpace(cassandraClient, "logs_keyspace");
+            cassandraClient.createKeySpace(cassandraClient, "logs_keyspace");
+
+            //CASSANDRA**********************
+
+            cassandraClient.dropLargeLogsTable(cassandraClient,"logs_keyspace");
+            cassandraClient.createLargeLogsTable(cassandraClient,"logs_keyspace");
+
+            long startLargeInsert = System.nanoTime();
+            for(int i = 0; i < NUMBEROFINSERTS; i++) {
+                cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 50);
+            }
+            long endLargeInsert = System.nanoTime();
+
+            int randomSensorId =0;
+            Random rand = new Random();
+            long startLargeFetch = System.nanoTime();
+            for(int i = NUMBEROFINSERTS-1; i > 0; i--) {
+                 randomSensorId = rand.nextInt(NUMBEROFCOLUMNS );
+                cassandraClient.querylargelogsByIdandSensor(cassandraClient,"logs_keyspace", i, randomSensorId);
+            }
+            long endLargeFetch = System.nanoTime();
+
+            cassandraClient.close();
+
+            //MYSQL**********************
 
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(
                     "jdbc:mysql://" + sqlAddress + ":" + sqlPort+ "/benchmark","liferay","liferay");
             Statement stmt=con.createStatement();
-
-            //LARGE**********************
 
             sqlClient.dropLargeLogsTable(stmt);
             sqlClient.createLargeLogsTable(stmt);
@@ -64,7 +63,6 @@ public class Main {
                 sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, 50);
             }
             long endSQLargeLInsert = System.nanoTime();
-
 
             long startLargeSQLQuery = System.nanoTime();
             for(int i = NUMBEROFINSERTS-1; i >0; i--) {

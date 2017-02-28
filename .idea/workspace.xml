@@ -4,9 +4,7 @@
     <list default="true" id="b15e5a4b-0dbf-454a-9c91-db11725b41a2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Main.class" afterPath="$PROJECT_DIR$/target/classes/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CassandraConnector.java" afterPath="$PROJECT_DIR$/src/CassandraConnector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MySQLConnector.java" afterPath="$PROJECT_DIR$/src/MySQLConnector.java" />
     </list>
     <ignored path="CassandraBenchmark.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+            <state relative-caret-position="660">
+              <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -684,7 +682,7 @@
       <option name="presentableId" value="Default" />
       <updated>1487002375980</updated>
       <workItem from="1487002380279" duration="37856000" />
-      <workItem from="1488308049497" duration="4396000" />
+      <workItem from="1488308049497" duration="4480000" />
     </task>
     <task id="LOCAL-00001" summary="Created query for largelogs mysql table">
       <created>1487099749120</created>
@@ -756,11 +754,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488311100040</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="renaming&#10;">
+      <created>1488312886477</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1488312886477</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42252000" />
+    <option name="totallyTimeSpent" value="42336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -812,7 +817,8 @@
     <MESSAGE value="removed small table / queries" />
     <MESSAGE value="created sparse insert" />
     <MESSAGE value="changed parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed parameters" />
+    <MESSAGE value="renaming&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="renaming&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1001,8 +1007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        <state relative-caret-position="660">
+          <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
