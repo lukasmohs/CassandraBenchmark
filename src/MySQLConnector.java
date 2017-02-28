@@ -23,7 +23,7 @@ public class MySQLConnector {
                 " description VARCHAR(31), " +
                 " level INTEGER, ";
         for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
-            sql += " server" + i + " VARCHAR(1), ";
+            sql += " sensor" + i + " VARCHAR(1), ";
         }
         sql += " PRIMARY KEY ( id ))";
 
@@ -38,7 +38,7 @@ public class MySQLConnector {
         int factor = 100/densityInPercent;
         for(int i = 0; i<NUMBEROFCOLUMNS; i++){
             if(i%factor == 0) {
-                sql += ", server" + i;
+                sql += ", sensor" + i;
             }
         }
 
@@ -67,7 +67,7 @@ public class MySQLConnector {
         stmt.executeUpdate(sql);
     }
 
-    public void queryLargeLogsById(Statement stmt, int id, int serverId) throws SQLException {
+    public void queryLargeLogsById(Statement stmt, int id, int sensorId) throws SQLException {
         LogEntry entry = null;
         ResultSet rs = stmt.executeQuery("select * from largelogs where id=" + id);
         while(rs.next()){
@@ -77,7 +77,7 @@ public class MySQLConnector {
                     rs.getString(rs.findColumn("title")),
                     rs.getString(rs.findColumn("description")),
                     rs.getInt(rs.findColumn("level")),
-                    rs.getString(rs.findColumn("server" + serverId)));
+                    rs.getString(rs.findColumn("sensor" + sensorId)));
         }
         rs.close();
     }

@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int NUMBEROFINSERTS = 5000;
+    private static final int NUMBEROFINSERTS = 1000;
     private static int NUMBEROFCOLUMNS = 1000;
 
     public static void main(String[] args) {
@@ -32,16 +32,16 @@ public class Main {
 
         long startLargeInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 100);
+            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 50);
         }
         long endLargeInsert = System.nanoTime();
 
-        int randomServerId =0;
+        int randomSensorId =0;
         Random rand = new Random();
         long startLargeFetch = System.nanoTime();
         for(int i = NUMBEROFINSERTS-1; i > 0; i--) {
-             randomServerId = rand.nextInt(NUMBEROFCOLUMNS );
-            cassandraClient.querylargelogsByIdandServer(cassandraClient,"logs_keyspace", i, randomServerId);
+             randomSensorId = rand.nextInt(NUMBEROFCOLUMNS );
+            cassandraClient.querylargelogsByIdandSensor(cassandraClient,"logs_keyspace", i, randomSensorId);
         }
         long endLargeFetch = System.nanoTime();
 
@@ -61,15 +61,15 @@ public class Main {
 
             long startLargeSQLInsert = System.nanoTime();
             for(int i = 0; i <NUMBEROFINSERTS; i++) {
-                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, 100);
+                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, 50);
             }
             long endSQLargeLInsert = System.nanoTime();
 
 
             long startLargeSQLQuery = System.nanoTime();
             for(int i = NUMBEROFINSERTS-1; i >0; i--) {
-                randomServerId = rand.nextInt(NUMBEROFCOLUMNS);
-                sqlClient.queryLargeLogsById(stmt,i,randomServerId);
+                randomSensorId = rand.nextInt(NUMBEROFCOLUMNS);
+                sqlClient.queryLargeLogsById(stmt,i,randomSensorId);
             }
             long endLargeSQLQuery = System.nanoTime();
 

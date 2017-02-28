@@ -7,9 +7,8 @@ import com.datastax.driver.core.querybuilder.Insert;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.core.querybuilder.Select;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.Date;
+import java.util.Random;
 
 public class CassandraConnector
 {
@@ -48,7 +47,7 @@ public class CassandraConnector
         String sql = "CREATE TABLE " + keySpace + ".largelogs (id int, date timestamp, title text, description text, level int, ";
 
         for(int i = 0; i<NUMBEROFCOLUMNS; i++) {
-            sql += "server" + i + " text,";
+            sql += "sensor" + i + " varchar,";
         }
         sql += " PRIMARY KEY (id))";
         client.getSession().execute(sql);
@@ -75,10 +74,12 @@ public class CassandraConnector
                 .value("level", level);
 
 
+        Random r = new Random();
         int factor = 100/densityInPercent;
         for(int i = 0; i<NUMBEROFCOLUMNS; i++){
             if(i%factor == 0) {
-                insert.value("server" + i, new BigInteger(130, new SecureRandom()).toString(32));
+                insert.value("sensor" + i, (char) (48 + r.nextInt(47)) + "");
+                //insert.value("sensor" + i, new BigInteger(130, new SecureRandom()).toString(32));
             }
         }
 
@@ -86,9 +87,9 @@ public class CassandraConnector
     }
 
 
-    public LogEntry querylargelogsByIdandServer(CassandraConnector client, String keySpace, int id, int serverId) {
+    public LogEntry querylargelogsByIdandSensor(CassandraConnector client, String keySpace, int id, int sensorId) {
 
-        Select.Where select = QueryBuilder.select("id", "date", "title", "description", "level", "server"+serverId)
+        Select.Where select = QueryBuilder.select("id", "date", "title", "description", "level", "sensor"+sensorId)
                 .from(keySpace,"largelogs")
                 .where(QueryBuilder.eq("id", id));
 
@@ -102,7 +103,7 @@ public class CassandraConnector
                     logEntryRow.getString("title"),
                     logEntryRow.getString("description"),
                     logEntryRow.getInt("level"),
-                    logEntryRow.getString("server" + serverId));
+                    logEntryRow.getString("sensor" + sensorId));
         } else {
             System.out.println("no matching row found");
         }
