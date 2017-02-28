@@ -31,16 +31,27 @@ public class MySQLConnector {
         stmt.executeUpdate(sql);
     }
 
-    public void insertLargeLog(Statement stmt, String title, String description, int level ) throws SQLException {
+    public void insertLargeLog(Statement stmt, String title, String description, int level, int densityInPercent ) throws SQLException {
 
-        String sql = "INSERT INTO largelogs VALUES"
-                + " (NULL, CURDATE(), '"
+        String sql = "INSERT INTO largelogs ("
+                + "id, date, title, description, level";
+
+        int factor = 100/densityInPercent;
+        for(int i = 0; i<NUMBEROFCOLUMNS; i++){
+            if(i%factor == 0) {
+                sql += ", server" + i;
+            }
+        }
+
+        sql     += ") VALUES(NULL, CURDATE(), '"
                 + title + "', '"
                 + description + "', "
                 + level;
 
         for(int i = 0; i< NUMBEROFCOLUMNS; i++) {
-            sql += " ,'" + new BigInteger(130, new SecureRandom()).toString(32) + "'";
+            if(i%factor == 0) {
+                sql += " ,'" + new BigInteger(130, new SecureRandom()).toString(32) + "'";
+            }
         }
         sql += ")";
 

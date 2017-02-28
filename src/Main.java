@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int NUMBEROFINSERTS = 1000;
+    private static final int NUMBEROFINSERTS = 10000;
     private static int NUMBEROFCOLUMNS = 180;
 
     public static void main(String[] args) {
@@ -25,8 +25,6 @@ public class Main {
         cassandraClient.dropKeySpace(cassandraClient, "logs_keyspace");
         cassandraClient.createKeySpace(cassandraClient, "logs_keyspace");
 
-        //SMALL**********************
-
         //LARGE**********************
 
         cassandraClient.dropLargeLogsTable(cassandraClient,"logs_keyspace");
@@ -34,7 +32,7 @@ public class Main {
 
         long startLargeInsert = System.nanoTime();
         for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i);
+            cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 10);
         }
         long endLargeInsert = System.nanoTime();
 
@@ -56,25 +54,6 @@ public class Main {
                     "jdbc:mysql://" + sqlAddress + ":" + sqlPort+ "/benchmark","liferay","liferay");
             Statement stmt=con.createStatement();
 
-            //SMALL**********************
-/*
-            sqlClient.dropLogsTable(stmt);
-            sqlClient.createLogsTable(stmt);
-
-
-            long startSQLInsert = System.nanoTime();
-            for(int i = 0; i <NUMBEROFINSERTS; i++) {
-                sqlClient.insertLog(stmt, "someTitle",  "someDescription", i);
-            }
-            long endSQLInsert = System.nanoTime();
-
-
-            long startSQLQuery = System.nanoTime();
-            for(int i = NUMBEROFINSERTS; i >0; i--) {
-                sqlClient.insertLog(stmt, "someTitle",  "someDescription", i);
-            }
-            long endSQLQuery = System.nanoTime();
-*/
             //LARGE**********************
 
             sqlClient.dropLargeLogsTable(stmt);
@@ -82,7 +61,7 @@ public class Main {
 
             long startLargeSQLInsert = System.nanoTime();
             for(int i = 0; i <NUMBEROFINSERTS; i++) {
-                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i);
+                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, 10);
             }
             long endSQLargeLInsert = System.nanoTime();
 
@@ -96,13 +75,6 @@ public class Main {
 
             //OUTPUT**********************
 
-            /*
-            System.out.println("Cassandra insert duration: " + ((double) (endInsert-startInsert) / 1000000000.0 ));
-            System.out.println("MYSQL insert duration: " + ((double) (endSQLInsert-startSQLInsert) / 1000000000.0 ));
-            System.out.println("--");
-            System.out.println("Cassandra fetch duration: " + ((double) (endFetch - startFetch) / 1000000000.0));
-            System.out.println("MYSQL fetch duration: " + ((double) (endSQLQuery-startSQLQuery) / 1000000000.0 ));
-            System.out.println("--");*/
             System.out.println("Cassandra large insert duration: " + ((double) (endLargeInsert-startLargeInsert) / 1000000000.0 ));
             System.out.println("MYSQL large insert duration: " + ((double) (endSQLargeLInsert-startLargeSQLInsert) / 1000000000.0 ));
             System.out.println("--");

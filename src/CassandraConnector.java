@@ -66,7 +66,7 @@ public class CassandraConnector
     }
 
 
-    public  void insertLargeLogEntry(CassandraConnector client, String keySpace, int id, String title,  String description, int level) {
+    public  void insertLargeLogEntry(CassandraConnector client, String keySpace, int id, String title,  String description, int level, int densityInPercent) {
         Insert insert = QueryBuilder.insertInto(keySpace, "largelogs")
                 .value("id", id)
                 .value("date", System.nanoTime())
@@ -75,8 +75,11 @@ public class CassandraConnector
                 .value("level", level);
 
 
+        int factor = 100/densityInPercent;
         for(int i = 0; i<NUMBEROFCOLUMNS; i++){
-            insert.value("server" + i, new BigInteger(130, new SecureRandom()).toString(32));
+            if(i%factor == 0) {
+                insert.value("server" + i, new BigInteger(130, new SecureRandom()).toString(32));
+            }
         }
 
         client.getSession().execute(insert.toString());
