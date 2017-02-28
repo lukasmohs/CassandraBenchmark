@@ -27,21 +27,6 @@ public class Main {
 
         //SMALL**********************
 
-        cassandraClient.dropLogsTable(cassandraClient,"logs_keyspace");
-        cassandraClient.createLogsTable(cassandraClient, "logs_keyspace");
-/*
-        long startInsert = System.nanoTime();
-        for(int i = 0; i < NUMBEROFINSERTS; i++) {
-            cassandraClient.insertLogEntry(client,"logs_keyspace", i , "someTitle",  "someDescription",  i);
-        }
-        long endInsert = System.nanoTime();
-
-        long startFetch = System.nanoTime();
-        for(int i = NUMBEROFINSERTS; i > 0; i--) {
-            cassandraClient.querylogsById(client,"logs_keyspace", "logs", i);
-        }
-        long endFetch = System.nanoTime();
-*/
         //LARGE**********************
 
         cassandraClient.dropLargeLogsTable(cassandraClient,"logs_keyspace");

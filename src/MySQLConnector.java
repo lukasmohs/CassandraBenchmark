@@ -16,18 +16,6 @@ public class MySQLConnector {
     }
 
 
-    public void createLogsTable(Statement stmt) throws SQLException {
-        String sql = "CREATE TABLE logs " +
-                "(id INT NOT NULL AUTO_INCREMENT, " +
-                " date DATE not NULL, " +
-                " title VARCHAR(31), " +
-                " description VARCHAR(31), " +
-                " level INTEGER, " +
-                " PRIMARY KEY ( id ))";
-
-        stmt.executeUpdate(sql);
-    }
-
     public void createLargeLogsTable(Statement stmt) throws SQLException {
         String sql = "CREATE TABLE largelogs " +
                 "(id INT NOT NULL AUTO_INCREMENT, " +
@@ -39,18 +27,6 @@ public class MySQLConnector {
             sql += " server" + i + " VARCHAR(31), ";
         }
         sql += " PRIMARY KEY ( id ))";
-
-        stmt.executeUpdate(sql);
-    }
-
-    public void insertLog(Statement stmt, String title, String description, int level ) throws SQLException {
-
-        String sql = "INSERT INTO logs VALUES"
-                + " (NULL, CURDATE(), '"
-                + title + "', '"
-                + description + "', "
-                + level + ")";
-        stmt.executeUpdate(sql);
 
         stmt.executeUpdate(sql);
     }
@@ -71,11 +47,6 @@ public class MySQLConnector {
         stmt.executeUpdate(sql);
     }
 
-    public void dropLogsTable(Statement stmt) throws SQLException {
-        String sql = "DROP TABLE IF EXISTS logs";
-
-        stmt.executeUpdate(sql);
-    }
 
     public void dropLargeLogsTable(Statement stmt) throws SQLException {
         String sql = "DROP TABLE IF EXISTS largelogs";
@@ -97,7 +68,4 @@ public class MySQLConnector {
         }
         rs.close();
     }
-
-
-
 }

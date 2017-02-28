@@ -39,14 +39,6 @@ public class CassandraConnector
         cluster.close();
     }
 
-    public  void dropLogsTable(CassandraConnector client, String keySpace) {
-        client.getSession().execute( "DROP TABLE IF EXISTS " + keySpace + ".logs");
-    }
-
-    public  void createLogsTable(CassandraConnector client, String keySpace) {
-        client.getSession().execute("CREATE TABLE " + keySpace + ".logs (id int, date timestamp, title text, description text, "
-                + "level int, PRIMARY KEY (id))");
-    }
 
     public  void dropLargeLogsTable(CassandraConnector client, String keySpace) {
         client.getSession().execute( "DROP TABLE IF EXISTS " + keySpace + ".largelogs");
@@ -73,17 +65,6 @@ public class CassandraConnector
 
     }
 
-    public  void insertLogEntry(CassandraConnector client, String keySpace, int id, String title,  String description, int level) {
-        Insert insert = QueryBuilder.insertInto(keySpace, "logs")
-                .value("id", id)
-                .value("date", System.nanoTime())
-                .value("title", title)
-                .value("description", description)
-                .value("level", level);
-
-
-        client.getSession().execute(insert.toString());
-    }
 
     public  void insertLargeLogEntry(CassandraConnector client, String keySpace, int id, String title,  String description, int level) {
         Insert insert = QueryBuilder.insertInto(keySpace, "largelogs")
@@ -101,26 +82,6 @@ public class CassandraConnector
         client.getSession().execute(insert.toString());
     }
 
-    public LogEntry querylogsById(CassandraConnector client, String keySpace, String tableName, int id) {
-
-        Select.Where select = QueryBuilder.select("id", "date", "title", "description", "level")
-                .from(keySpace,tableName)
-                .where(QueryBuilder.eq("id", id));
-
-        ResultSet logEntryResults = client.getSession().execute(select.toString().substring(0, select.toString().length()-1) + " ALLOW FILTERING");
-        final Row logEntryRow = logEntryResults.one();
-        LogEntry logEntry = null;
-        if(logEntryRow!=null) {
-            logEntry = new LogEntry(
-                    logEntryRow.getInt("id"),
-                    new Date(logEntryRow.getTimestamp("date").getTime()),
-                    logEntryRow.getString("title"),
-                    logEntryRow.getString("description"),
-                    logEntryRow.getInt("level"));
-        }
-
-        return logEntry;
-    }
 
     public LogEntry querylargelogsByIdandServer(CassandraConnector client, String keySpace, int id, int serverId) {
 
