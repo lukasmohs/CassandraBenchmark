@@ -1,6 +1,6 @@
 
 <project>
-    <groupId>com.lukasmohs.cassandra</groupId>
+    <groupId>com.lukasmohs.CassandraBenchmark</groupId>
     <modelVersion>4.0.0</modelVersion>
     <name>cassandra-benchmark POM</name>
     <artifactId>cassandra-benchmark</artifactId>
