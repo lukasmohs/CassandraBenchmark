@@ -10,24 +10,17 @@ public class LogEntry {
     private String title;
     private String description;
     private int level;
-    private String serverLog;
+    private String sensorStatus;
 
-    public LogEntry(long id, Date date, String title, String description, int level, String serverLog) {
+    public LogEntry(long id, Date date, String title, String description, int level, String sensorStatus) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.description = description;
         this.level = level;
-        this.serverLog = serverLog;
+        this.sensorStatus = sensorStatus;
     }
 
-    public LogEntry(long id, Date date, String title, String description, int level) {
-        this.id = id;
-        this.date = date;
-        this.title = title;
-        this.description = description;
-        this.level = level;
-    }
 
     public long getId() {
         return id;
@@ -48,4 +41,6 @@ public class LogEntry {
     public int getLevel() {
         return level;
     }
+
+    public String getSensorStatus(){ return sensorStatus; }
 }
