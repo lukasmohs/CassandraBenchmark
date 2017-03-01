@@ -7,7 +7,8 @@ import java.util.Random;
 public class Main {
 
     private static final int NUMBEROFINSERTS = 1000;
-    private static int NUMBEROFCOLUMNS = 1000;
+    private static int NUMBEROFCOLUMNS = 10;
+    private static int TABLEDENSITY = 100;
 
     public static void main(String[] args) {
 
@@ -33,7 +34,7 @@ public class Main {
 
             long startLargeInsert = System.nanoTime();
             for(int i = 0; i < NUMBEROFINSERTS; i++) {
-                cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, 50);
+                cassandraClient.insertLargeLogEntry(cassandraClient,"logs_keyspace", i , "someTitle",  "someDescription",  i, TABLEDENSITY);
             }
             long endLargeInsert = System.nanoTime();
 
@@ -60,7 +61,7 @@ public class Main {
 
             long startLargeSQLInsert = System.nanoTime();
             for(int i = 0; i <NUMBEROFINSERTS; i++) {
-                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, 50);
+                sqlClient.insertLargeLog(stmt, "someTitle",  "someDescription", i, TABLEDENSITY);
             }
             long endSQLargeLInsert = System.nanoTime();
 

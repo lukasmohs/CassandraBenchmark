@@ -45,7 +45,6 @@ public class CassandraConnector
 
     public  void createLargeLogsTable(CassandraConnector client, String keySpace) {
         String sql = "CREATE TABLE " + keySpace + ".largelogs (id int, date timestamp, title text, description text, level int, ";
-
         for(int i = 0; i<NUMBEROFCOLUMNS; i++) {
             sql += "sensor" + i + " varchar,";
         }
@@ -72,23 +71,18 @@ public class CassandraConnector
                 .value("title", title)
                 .value("description", description)
                 .value("level", level);
-
-
         Random r = new Random();
         int factor = 100/densityInPercent;
         for(int i = 0; i<NUMBEROFCOLUMNS; i++){
             if(i%factor == 0) {
                 insert.value("sensor" + i, (char) (48 + r.nextInt(47)) + "");
-                //insert.value("sensor" + i, new BigInteger(130, new SecureRandom()).toString(32));
             }
         }
-
         client.getSession().execute(insert.toString());
     }
 
 
     public LogEntry querylargelogsByIdandSensor(CassandraConnector client, String keySpace, int id, int sensorId) {
-
         Select.Where select = QueryBuilder.select("id", "date", "title", "description", "level", "sensor"+sensorId)
                 .from(keySpace,"largelogs")
                 .where(QueryBuilder.eq("id", id));
@@ -104,10 +98,7 @@ public class CassandraConnector
                     logEntryRow.getString("description"),
                     logEntryRow.getInt("level"),
                     logEntryRow.getString("sensor" + sensorId));
-        } else {
-            System.out.println("no matching row found");
         }
-
         return logEntry;
     }
 }

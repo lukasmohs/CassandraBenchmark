@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b15e5a4b-0dbf-454a-9c91-db11725b41a2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/CassandraConnector.class" afterPath="$PROJECT_DIR$/target/classes/CassandraConnector.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/LogEntry.class" afterPath="$PROJECT_DIR$/target/classes/LogEntry.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Main.class" afterPath="$PROJECT_DIR$/target/classes/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/MySQLConnector.class" afterPath="$PROJECT_DIR$/target/classes/MySQLConnector.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CassandraConnector.java" afterPath="$PROJECT_DIR$/src/CassandraConnector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="CassandraBenchmark.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +34,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="21" selection-end-column="37" />
+            <state relative-caret-position="345">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,22 +46,22 @@
       <file leaf-file-name="MySQLConnector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MySQLConnector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="750">
+              <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1488312225000" expanded="true" signature="421:664" ph="CREATE TABLE... logs" />
-                <marker date="1488312225000" expanded="true" signature="421:816" ph="CREATE TABLE... logs" />
-                <marker date="1488312225000" expanded="true" signature="1020:1041" ph="INSERT INTO largelogs... " />
-                <marker date="1488312225000" expanded="true" signature="1020:1099" ph="INSERT INTO largelogs... " />
-                <marker date="1488312225000" expanded="true" signature="1020:1371" ph="INSERT INTO logs... " />
-                <marker date="1488312225000" expanded="true" signature="1020:1408" ph="INSERT INTO largelogs... " />
-                <marker date="1488312225000" expanded="true" signature="1020:1426" ph="INSERT INTO logs... " />
-                <marker date="1488312225000" expanded="true" signature="1020:1433" ph="INSERT INTO logs... " />
-                <marker date="1488312225000" expanded="true" signature="1312:1337" ph="VALUES(NULL,... " />
-                <marker date="1488312225000" expanded="true" signature="1893:1923" ph="DROP TABLE I... " />
-                <marker date="1488312225000" expanded="true" signature="2135:2149" ph="select * fro... test" />
-                <marker date="1488312225000" expanded="true" signature="2135:2168" ph="select * fro... logs" />
+                <marker date="1488399769000" expanded="true" signature="421:664" ph="CREATE TABLE... logs" />
+                <marker date="1488399769000" expanded="true" signature="421:816" ph="CREATE TABLE... logs" />
+                <marker date="1488399769000" expanded="true" signature="1020:1041" ph="INSERT INTO largelogs... " />
+                <marker date="1488399769000" expanded="true" signature="1020:1099" ph="INSERT INTO largelogs... " />
+                <marker date="1488399769000" expanded="true" signature="1020:1371" ph="INSERT INTO logs... " />
+                <marker date="1488399769000" expanded="true" signature="1020:1408" ph="INSERT INTO largelogs... " />
+                <marker date="1488399769000" expanded="true" signature="1020:1426" ph="INSERT INTO logs... " />
+                <marker date="1488399769000" expanded="true" signature="1020:1433" ph="INSERT INTO logs... " />
+                <marker date="1488399769000" expanded="true" signature="1312:1337" ph="VALUES(NULL,... " />
+                <marker date="1488399769000" expanded="true" signature="1893:1923" ph="DROP TABLE I... " />
+                <marker date="1488399769000" expanded="true" signature="2135:2149" ph="select * fro... test" />
+                <marker date="1488399769000" expanded="true" signature="2135:2168" ph="select * fro... logs" />
               </folding>
             </state>
           </provider>
@@ -65,8 +70,8 @@
       <file leaf-file-name="CassandraConnector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CassandraConnector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="57" column="94" selection-start-line="57" selection-start-column="94" selection-end-line="57" selection-end-column="94" />
+            <state relative-caret-position="930">
+              <caret line="101" column="24" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -104,10 +109,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Movie.java" />
-        <option value="$PROJECT_DIR$/src/MySQLConnector.java" />
         <option value="$PROJECT_DIR$/src/LogEntry.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/CassandraConnector.java" />
+        <option value="$PROJECT_DIR$/src/MySQLConnector.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -660,7 +665,7 @@
       <option name="presentableId" value="Default" />
       <updated>1487002375980</updated>
       <workItem from="1487002380279" duration="37856000" />
-      <workItem from="1488308049497" duration="7900000" />
+      <workItem from="1488308049497" duration="13040000" />
     </task>
     <task id="LOCAL-00001" summary="Created query for largelogs mysql table">
       <created>1487099749120</created>
@@ -767,11 +772,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488341270135</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="changes replication factor">
+      <created>1488389891110</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1488389891110</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45756000" />
+    <option name="totallyTimeSpent" value="50896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -785,7 +797,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20821919" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28767124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -824,7 +836,8 @@
     <MESSAGE value="renaming&#10;" />
     <MESSAGE value="restructured" />
     <MESSAGE value="renaming" />
-    <option name="LAST_COMMIT_MESSAGE" value="renaming" />
+    <MESSAGE value="changes replication factor" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes replication factor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -867,18 +880,18 @@
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1488312225000" expanded="true" signature="421:664" ph="CREATE TABLE... logs" />
-            <marker date="1488312225000" expanded="true" signature="421:816" ph="CREATE TABLE... logs" />
-            <marker date="1488312225000" expanded="true" signature="1020:1041" ph="INSERT INTO largelogs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1099" ph="INSERT INTO largelogs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1371" ph="INSERT INTO logs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1408" ph="INSERT INTO largelogs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1426" ph="INSERT INTO logs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1433" ph="INSERT INTO logs... " />
-            <marker date="1488312225000" expanded="true" signature="1312:1337" ph="VALUES(NULL,... " />
-            <marker date="1488312225000" expanded="true" signature="1893:1923" ph="DROP TABLE I... " />
-            <marker date="1488312225000" expanded="true" signature="2135:2149" ph="select * fro... test" />
-            <marker date="1488312225000" expanded="true" signature="2135:2168" ph="select * fro... logs" />
+            <marker date="1488399769000" expanded="true" signature="421:664" ph="CREATE TABLE... logs" />
+            <marker date="1488399769000" expanded="true" signature="421:816" ph="CREATE TABLE... logs" />
+            <marker date="1488399769000" expanded="true" signature="1020:1041" ph="INSERT INTO largelogs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1099" ph="INSERT INTO largelogs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1371" ph="INSERT INTO logs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1408" ph="INSERT INTO largelogs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1426" ph="INSERT INTO logs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1433" ph="INSERT INTO logs... " />
+            <marker date="1488399769000" expanded="true" signature="1312:1337" ph="VALUES(NULL,... " />
+            <marker date="1488399769000" expanded="true" signature="1893:1923" ph="DROP TABLE I... " />
+            <marker date="1488399769000" expanded="true" signature="2135:2149" ph="select * fro... test" />
+            <marker date="1488399769000" expanded="true" signature="2135:2168" ph="select * fro... logs" />
           </folding>
         </state>
       </provider>
@@ -967,40 +980,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MySQLConnector.java">
+    <entry file="file://$PROJECT_DIR$/src/CassandraConnector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1488312225000" expanded="true" signature="421:664" ph="CREATE TABLE... logs" />
-            <marker date="1488312225000" expanded="true" signature="421:816" ph="CREATE TABLE... logs" />
-            <marker date="1488312225000" expanded="true" signature="1020:1041" ph="INSERT INTO largelogs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1099" ph="INSERT INTO largelogs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1371" ph="INSERT INTO logs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1408" ph="INSERT INTO largelogs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1426" ph="INSERT INTO logs... " />
-            <marker date="1488312225000" expanded="true" signature="1020:1433" ph="INSERT INTO logs... " />
-            <marker date="1488312225000" expanded="true" signature="1312:1337" ph="VALUES(NULL,... " />
-            <marker date="1488312225000" expanded="true" signature="1893:1923" ph="DROP TABLE I... " />
-            <marker date="1488312225000" expanded="true" signature="2135:2149" ph="select * fro... test" />
-            <marker date="1488312225000" expanded="true" signature="2135:2168" ph="select * fro... logs" />
-          </folding>
+        <state relative-caret-position="930">
+          <caret line="101" column="24" selection-start-line="101" selection-start-column="24" selection-end-line="101" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CassandraConnector.java">
+    <entry file="file://$PROJECT_DIR$/src/MySQLConnector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="57" column="94" selection-start-line="57" selection-start-column="94" selection-end-line="57" selection-end-column="94" />
-          <folding />
+        <state relative-caret-position="750">
+          <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1488399769000" expanded="true" signature="421:664" ph="CREATE TABLE... logs" />
+            <marker date="1488399769000" expanded="true" signature="421:816" ph="CREATE TABLE... logs" />
+            <marker date="1488399769000" expanded="true" signature="1020:1041" ph="INSERT INTO largelogs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1099" ph="INSERT INTO largelogs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1371" ph="INSERT INTO logs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1408" ph="INSERT INTO largelogs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1426" ph="INSERT INTO logs... " />
+            <marker date="1488399769000" expanded="true" signature="1020:1433" ph="INSERT INTO logs... " />
+            <marker date="1488399769000" expanded="true" signature="1312:1337" ph="VALUES(NULL,... " />
+            <marker date="1488399769000" expanded="true" signature="1893:1923" ph="DROP TABLE I... " />
+            <marker date="1488399769000" expanded="true" signature="2135:2149" ph="select * fro... test" />
+            <marker date="1488399769000" expanded="true" signature="2135:2168" ph="select * fro... logs" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="21" selection-end-column="37" />
+        <state relative-caret-position="345">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
